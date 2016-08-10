@@ -16,7 +16,7 @@ There are two parts to this:
 
 Thanks to polymer-build, the first step is incredibly simple. We simply pipe the JavaScript of our elements through babel in our gulp task:
 
-```
+```javascript
 const sources = project.sources()
 	.pipe(project.splitHtml())
 	.pipe(gulpif(/\.js$/, babel({
@@ -31,9 +31,9 @@ You can find this step [here](https://github.com/43081j/polymer-es6-example/blob
 
 The second step is as simple as defining your elements as classes which extend the HTMLElement class:
 
-```
+```javascript
 class MyElement extends HTMLElement {
-	...
+	// ...
 }
 ```
 
@@ -41,15 +41,15 @@ However, this won't work right away as we have no `is` property and don't have a
 
 This is where the `beforeRegister` method comes into use:
 
-```
+```javascript
 class MyElement extends HTMLElement {
 	beforeRegister() {
 		this.is = 'my-element';
 		this.properties = {
-			...
+			// ...
 		};
 		this.listeners = {
-			...
+			// ...
 		};
 	}
 }
@@ -57,7 +57,7 @@ class MyElement extends HTMLElement {
 
 We can then pass our class directly into Polymer and it will be registered as usual:
 
-```
+```javascript
 Polymer(MyElement);
 ```
 
@@ -65,7 +65,7 @@ Polymer(MyElement);
 
 In future, I hope the Polymer team eventually allows us to simply do:
 
-```
+```javascript
 class MyElement extends Polymer.Base {
 }
 ```
