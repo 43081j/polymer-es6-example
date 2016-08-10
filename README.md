@@ -2,37 +2,26 @@
 
 ES6 example of a Polymer app
 
-## Install the Polymer-CLI
+Essentially this is a very brief example of how to setup a build process using [polymer-build](https://github.com/polymer/polymer-build) combined with babel.
 
-First, make sure you have the [Polymer CLI](https://www.npmjs.com/package/polymer-cli) installed. Then run `polymer serve` to serve your application locally.
+This means you can write your elements as classes which extend the native `HTMLElement` and have them transpiled by babel.
 
-## Viewing Your Application
-
-```
-$ polymer serve
-```
-
-## Building Your Application
+## Install
 
 ```
-$ polymer build
+$ npm install
+$ bower install
+$ gulp
 ```
 
-This will create a `build/` folder with `bundled/` and `unbundled/` sub-folders
-containing a bundled (Vulcanized) and unbundled builds, both run through HTML,
-CSS, and JS optimizers.
-
-You can serve the built versions by giving `polymer serve` a folder to serve
-from:
+## Viewing
 
 ```
-$ polymer serve build/bundled
+$ gulp serve
 ```
 
-## Running Tests
+## Building
 
 ```
-$ polymer test
+$ gulp
 ```
-
-Your application is already set up to be tested via [web-component-tester](https://github.com/Polymer/web-component-tester). Run `polymer test` to run your application's test suite locally.
