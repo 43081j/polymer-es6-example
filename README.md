@@ -1,4 +1,4 @@
-# \<polymer-es6\>
+# \<polymer-es6-example\>
 
 ES6 example of a Polymer app
 
