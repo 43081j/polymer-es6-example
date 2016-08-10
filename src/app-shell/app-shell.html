@@ -1,0 +1,99 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="app-shell">
+	<template>
+		<style>
+			:host {
+				display: block;
+			}
+
+			table {
+				width: 100%;
+				border-collapse: collapse;
+			}
+
+			td,
+			th {
+				text-align: center;
+				border: 1px solid;
+			}
+		</style>
+		<input type="text" placeholder="Search..." value="{{search::input}}">
+		<table>
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Hex</th>
+					<th>HSL</th>
+					<th>RGB</th>
+				</tr>
+			</thead>
+			<tbody>
+				<template
+					id="repeater"
+					is="dom-repeat"
+					filter="_filterItems"
+					items="[[items]]">
+					<tr>
+						<td>[[item.name]]</td>
+						<td>[[item.hex]]</td>
+						<td>[[item.hsl]]</td>
+						<td>[[item.rgb]]</td>
+					</tr>
+				</template>
+			</tbody>
+		</table>
+	</template>
+
+	<script>
+		class AppShell extends HTMLElement {
+			beforeRegister() {
+				this.is = 'app-shell';
+				this.properties = {
+					items: {
+						type: Array,
+						value: () => {
+							return [
+								{
+									name: 'red',
+									hex: '#f00',
+									hsl: 'hsl(0, 100%, 50%)',
+									rgb: 'rgb(255, 0, 0)'
+								},
+								{
+									name: 'green',
+									hex: '#0f0',
+									hsl: 'hsl(120, 100%, 50%)',
+									rgb: 'rgb(0, 255, 0)'
+								},
+								{
+									name: 'blue',
+									hex: '#00f',
+									hsl: 'hsl(240, 100%, 50%)',
+									rgb: 'rgb(0, 0, 255)'
+								}
+							];
+						}
+					},
+					search: {
+						type: String,
+						observer: '_onSearchChanged'
+					}
+				};
+			}
+
+			_filterItems(item) {
+				var val = (this.search || '').toLowerCase(),
+					idx = item.name.toLowerCase().indexOf(val);
+
+				return idx !== -1;
+			}
+
+			_onSearchChanged(val) {
+				this.$.repeater.render();
+			}
+		};
+
+		Polymer(AppShell);
+	</script>
+</dom-module>

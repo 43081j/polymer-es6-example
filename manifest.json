@@ -1,0 +1,7 @@
+{
+  "name": "polymer-es6-example",
+  "short_name": "polymer-es6-example",
+  "description": "ES6 example of a Polymer app",
+  "start_url": "/",
+  "display": "standalone"
+}
